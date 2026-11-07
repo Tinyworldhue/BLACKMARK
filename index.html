@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -8,18 +7,14 @@
 <meta name="theme-color" content="#080808">
 <title>BLACKMARKSHOPING | فروشگاه آنلاین پوشاک</title>
 <meta name="description" content="فروشگاه آنلاین پوشاک مردانه BLACKMARKSHOPING، سفارش از سراسر افغانستان.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{
- --bg:#080808;--panel:#111;--panel2:#181818;--gold:#d6ad62;
- --white:#f5f2ec;--muted:#999;--border:#292929;--green:#25d366;
-}
+:root{--bg:#080808;--panel:#111;--panel2:#181818;--gold:#d6ad62;--white:#f5f2ec;--muted:#999;--border:#292929;--green:#25d366}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:'Vazirmatn',sans-serif}
-button,input,select{font-family:inherit}
-button{cursor:pointer}
-a{text-decoration:none;color:inherit}
+button,input,select{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
 .container{width:min(1180px,92%);margin:auto}
 .topbar{background:#17130d;color:var(--gold);text-align:center;padding:9px;font-size:12px}
 header{position:sticky;top:0;z-index:20;background:#080808ed;backdrop-filter:blur(15px);border-bottom:1px solid var(--border)}
@@ -117,24 +112,25 @@ footer a{display:block;margin:8px 0}
 .field input,.field select{width:100%;background:#202020;border:1px solid #393939;color:white;padding:12px;border-radius:7px;outline:none}
 .notice{font-size:11px;color:#aaa;line-height:1.8;margin:12px 0}
 .whatsapp{background:var(--green);border:0;color:#071b0d}
+.status{font-size:11px;color:#aaa;margin-top:12px;min-height:20px}
 @media(max-width:850px){
- .navlinks{display:none}.menu-btn{display:block}
- .hero-grid{grid-template-columns:1fr}.hero-image{height:330px}
- .products{grid-template-columns:repeat(2,1fr)}
- .categories{grid-template-columns:repeat(2,1fr)}
- .feature-grid{grid-template-columns:repeat(2,1fr)}
- .about-grid{grid-template-columns:1fr}
- .footer-grid{grid-template-columns:1fr 1fr}
+.navlinks{display:none}.menu-btn{display:block}
+.hero-grid{grid-template-columns:1fr}.hero-image{height:330px}
+.products{grid-template-columns:repeat(2,1fr)}
+.categories{grid-template-columns:repeat(2,1fr)}
+.feature-grid{grid-template-columns:repeat(2,1fr)}
+.about-grid{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:480px){
- .nav{height:65px}.logo{font-size:17px}
- .hero{padding-top:38px}.hero-image{height:260px}
- .products{gap:10px}.product-image{height:185px}
- .product-info{padding:10px}.product-info h3{font-size:11px}
- .price{font-size:12px}.add{padding:7px;font-size:10px}
- .category{height:140px}.section{padding:45px 0}
- .banner{padding:23px;display:block}.banner .btn{margin-top:18px}
- .footer-grid{grid-template-columns:1fr}
+.nav{height:65px}.logo{font-size:17px}
+.hero{padding-top:38px}.hero-image{height:260px}
+.products{gap:10px}.product-image{height:185px}
+.product-info{padding:10px}.product-info h3{font-size:11px}
+.price{font-size:12px}.add{padding:7px;font-size:10px}
+.category{height:140px}.section{padding:45px 0}
+.banner{padding:23px;display:block}
+.banner .btn{margin-top:18px}.footer-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -143,256 +139,429 @@ footer a{display:block;margin:8px 0}
 <div class="topbar">ارسال سفارش به سراسر افغانستان | خرید آسان و مطمئن</div>
 
 <header>
- <div class="container nav">
-  <a href="#" class="logo">BLACKMARK<span>SHOPING</span></a>
-  <nav class="navlinks">
-   <a href="#home">خانه</a><a href="#categories">دسته‌بندی‌ها</a>
-   <a href="#products">محصولات</a><a href="#about">درباره ما</a><a href="#contact">تماس</a>
-  </nav>
-  <div class="nav-actions">
-   <button class="iconbtn" onclick="openCart()">سبد خرید <span class="cart-count" id="cartCount">0</span></button>
-   <button class="iconbtn menu-btn" onclick="document.getElementById('mobileNav').classList.toggle('show')">☰</button>
-  </div>
- </div>
- <div id="mobileNav" style="display:none;background:#111;padding:15px 5%;line-height:2.7">
-  <a href="#home">خانه</a><br><a href="#categories">دسته‌بندی‌ها</a><br>
-  <a href="#products">محصولات</a><br><a href="#about">درباره ما</a><br><a href="#contact">تماس</a>
- </div>
+<div class="container nav">
+<a href="#home" class="logo">BLACKMARK<span>SHOPING</span></a>
+<nav class="navlinks">
+<a href="#home">خانه</a>
+<a href="#categories">دسته‌بندی‌ها</a>
+<a href="#products">محصولات</a>
+<a href="#about">درباره ما</a>
+<a href="#contact">تماس</a>
+</nav>
+<div class="nav-actions">
+<button class="iconbtn" onclick="openCart()">سبد خرید <span class="cart-count" id="cartCount">0</span></button>
+<button class="iconbtn menu-btn" onclick="toggleMobileNav()">☰</button>
+</div>
+</div>
+<div id="mobileNav" style="display:none;background:#111;padding:15px 5%;line-height:2.7">
+<a href="#home">خانه</a><br>
+<a href="#categories">دسته‌بندی‌ها</a><br>
+<a href="#products">محصولات</a><br>
+<a href="#about">درباره ما</a><br>
+<a href="#contact">تماس</a>
+</div>
 </header>
 
 <main>
 <section class="hero" id="home">
- <div class="container hero-grid">
-  <div>
-   <div class="eyebrow">BLACKMARKSHOPING — STYLE YOUR LIFE</div>
-   <h1>استایل متفاوت،<br><span>انتخاب هوشمندانه</span></h1>
-   <p>به دنیای پوشاک مردانه خوش آمدید. لباس‌هایی با استایل مدرن، انتخاب آسان و امکان سفارش از هر نقطه افغانستان.</p>
-   <a class="btn" href="#products">مشاهده محصولات ←</a>
-   <a class="btn btn-outline" href="#categories">دسته‌بندی‌ها</a>
-  </div>
-  <div class="hero-image">
-   <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1000" alt="استایل مدرن">
-   <div class="hero-label"><strong>NEW COLLECTION</strong><small>استایل جدید را کشف کن</small></div>
-  </div>
- </div>
+<div class="container hero-grid">
+<div>
+<div class="eyebrow">BLACKMARKSHOPING / COLLECTION</div>
+<h1>استایل متفاوت،<br><span>انتخاب هوشمندانه</span></h1>
+<p>به فروشگاه BLACKMARKSHOPING خوش آمدی. مجموعه‌ای از پوشاک مردانه با استایل مدرن؛ محصولات را انتخاب کن و سفارش خود را از هر نقطه افغانستان ثبت کن.</p>
+<a class="btn" href="#products">مشاهده محصولات ←</a>
+<a class="btn btn-outline" href="#categories">دسته‌بندی‌ها</a>
+</div>
+<div class="hero-image">
+<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1000" alt="استایل مدرن">
+<div class="hero-label"><strong>NEW COLLECTION</strong><small>استایل جدید را کشف کن</small></div>
+</div>
+</div>
 </section>
 
 <section class="features">
- <div class="container feature-grid">
-  <div class="feature"><div class="feature-icon">🚚</div><div><strong>ارسال سراسری</strong><small>سفارش از سراسر افغانستان</small></div></div>
-  <div class="feature"><div class="feature-icon">✦</div><div><strong>انتخاب مدرن</strong><small>مدل‌های متنوع پوشاک</small></div></div>
-  <div class="feature"><div class="feature-icon">☎</div><div><strong>پشتیبانی سفارش</strong><small>ارتباط مستقیم با فروشگاه</small></div></div>
-  <div class="feature"><div class="feature-icon">✓</div><div><strong>ثبت آسان سفارش</strong><small>سفارش از طریق واتساپ</small></div></div>
- </div>
+<div class="container feature-grid">
+<div class="feature"><div class="feature-icon">🚚</div><div><strong>ارسال سراسری</strong><small>سفارش از سراسر افغانستان</small></div></div>
+<div class="feature"><div class="feature-icon">✦</div><div><strong>انتخاب مدرن</strong><small>مدل‌های متنوع پوشاک</small></div></div>
+<div class="feature"><div class="feature-icon">☎</div><div><strong>پشتیبانی سفارش</strong><small>ارتباط مستقیم با فروشگاه</small></div></div>
+<div class="feature"><div class="feature-icon">✓</div><div><strong>ثبت آسان سفارش</strong><small>سفارش از طریق واتساپ</small></div></div>
+</div>
 </section>
 
 <section class="section" id="categories">
- <div class="container">
-  <div class="section-head"><div><h2>دسته‌بندی <span class="gold">محصولات</span></h2><p>استایل مورد علاقه‌ات را انتخاب کن</p></div></div>
-  <div class="categories">
-   <div class="category" onclick="setCategory('هودی')"><img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600" alt="هودی"><span>هودی و سویشرت</span></div>
-   <div class="category" onclick="setCategory('تی‌شرت')"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600" alt="تی شرت"><span>تی‌شرت</span></div>
-   <div class="category" onclick="setCategory('شلوار')"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600" alt="شلوار"><span>شلوار</span></div>
-   <div class="category" onclick="setCategory('کاپشن')"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600" alt="کاپشن"><span>کاپشن و جاکت</span></div>
-  </div>
- </div>
+<div class="container">
+<div class="section-head">
+<div><h2>دسته‌بندی <span class="gold">محصولات</span></h2><p>استایل مورد علاقه‌ات را انتخاب کن</p></div>
+</div>
+<div class="categories">
+<div class="category" onclick="setCategory('هودی')"><img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600" alt="هودی"><span>هودی و سویشرت</span></div>
+<div class="category" onclick="setCategory('تی‌شرت')"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600" alt="تی شرت"><span>تی‌شرت</span></div>
+<div class="category" onclick="setCategory('شلوار')"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600" alt="شلوار"><span>شلوار</span></div>
+<div class="category" onclick="setCategory('کاپشن')"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600" alt="کاپشن"><span>کاپشن و جاکت</span></div>
+</div>
+</div>
 </section>
 
 <section class="section" id="products">
- <div class="container">
-  <div class="section-head"><div><h2>محصولات <span class="gold">فروشگاه</span></h2><p>محصول مورد علاقه خود را پیدا کن</p></div></div>
-  <div class="toolbar">
-   <input class="search" id="search" placeholder="جستجوی محصول..." oninput="renderProducts()">
-   <div class="filters">
-    <button class="filter active" onclick="setCategory('همه',this)">همه</button>
-    <button class="filter" onclick="setCategory('هودی',this)">هودی</button>
-    <button class="filter" onclick="setCategory('تی‌شرت',this)">تی‌شرت</button>
-    <button class="filter" onclick="setCategory('شلوار',this)">شلوار</button>
-    <button class="filter" onclick="setCategory('کاپشن',this)">کاپشن</button>
-   </div>
-  </div>
-  <div class="products" id="productsGrid"></div>
- </div>
+<div class="container">
+<div class="section-head">
+<div><h2>محصولات <span class="gold">فروشگاه</span></h2><p>محصول مورد علاقه خود را پیدا کن</p></div>
+</div>
+<div class="toolbar">
+<input class="search" id="search" placeholder="جستجوی محصول..." oninput="renderProducts()">
+<div class="filters">
+<button class="filter active" onclick="setCategory('همه',this)">همه</button>
+<button class="filter" onclick="setCategory('هودی',this)">هودی</button>
+<button class="filter" onclick="setCategory('تی‌شرت',this)">تی‌شرت</button>
+<button class="filter" onclick="setCategory('شلوار',this)">شلوار</button>
+<button class="filter" onclick="setCategory('کاپشن',this)">کاپشن</button>
+</div>
+</div>
+<div class="products" id="productsGrid"><div class="empty">در حال بارگذاری محصولات...</div></div>
+<div class="status" id="dbStatus"></div>
+</div>
 </section>
 
 <section class="section">
- <div class="container">
-  <div class="banner">
-   <div><h2>استایل خودت را بساز.</h2><p>محصولات را ببین و سفارش خود را ثبت کن.</p></div>
-   <a href="#products" class="btn">خرید محصولات</a>
-  </div>
- </div>
+<div class="container">
+<div class="banner">
+<div><h2>استایل خودت را بساز.</h2><p>محصولات را ببین و سفارش خود را ثبت کن.</p></div>
+<a href="#products" class="btn">خرید محصولات</a>
+</div>
+</div>
 </section>
 
 <section class="section" id="about">
- <div class="container about-grid">
-  <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900" alt="فروشگاه پوشاک">
-  <div><div class="eyebrow">ABOUT BLACKMARK</div><h2>درباره <span class="gold">BLACKMARKSHOPING</span></h2>
-   <p>هدف ما فراهم کردن تجربه‌ای ساده و مدرن برای خرید پوشاک مردانه است. در این فروشگاه می‌توانی محصولات را بررسی کنی، انتخابت را به سبد خرید اضافه کنی و سفارش خود را از طریق واتساپ ارسال کنی.</p>
-   <p>ما در حال توسعه فروشگاه برای ارائه خدمات بهتر به مشتریان در سراسر افغانستان هستیم.</p>
-  </div>
- </div>
+<div class="container about-grid">
+<img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900" alt="فروشگاه پوشاک">
+<div>
+<div class="eyebrow">ABOUT BLACKMARK</div>
+<h2>درباره <span class="gold">BLACKMARKSHOPING</span></h2>
+<p>هدف ما فراهم کردن تجربه‌ای ساده و مدرن برای خرید پوشاک مردانه است. در این فروشگاه می‌توانی محصولات را بررسی کنی، انتخابت را به سبد خرید اضافه کنی و سفارش خود را از طریق واتساپ ارسال کنی.</p>
+<p>ما در حال توسعه فروشگاه برای ارائه خدمات بهتر به مشتریان در سراسر افغانستان هستیم.</p>
+</div>
+</div>
 </section>
 
 <section class="section" id="contact">
- <div class="container">
-  <div class="contact-box">
-   <div><h2>با ما در ارتباط باش</h2><p style="color:#aaa;font-size:12px;margin-top:8px">برای پرسش درباره محصولات و سفارش‌ها پیام بده.</p></div>
-   <a class="btn whatsapp" href="https://wa.me/93705154008" target="_blank">ارتباط در واتساپ</a>
-  </div>
- </div>
+<div class="container">
+<div class="contact-box">
+<div><h2>با ما در ارتباط باش</h2><p style="color:#aaa;font-size:12px;margin-top:8px">برای پرسش درباره محصولات و سفارش‌ها پیام بده.</p></div>
+<a class="btn whatsapp" href="https://wa.me/93705154008" target="_blank" rel="noopener">ارتباط در واتساپ</a>
+</div>
+</div>
 </section>
 </main>
 
 <footer>
- <div class="container">
-  <div class="footer-grid">
-   <div><h3>BLACKMARKSHOPING</h3><p>فروشگاه آنلاین پوشاک مردانه؛ انتخابی مدرن برای استایل روزمره.</p></div>
-   <div><h3>دسترسی سریع</h3><a href="#home">خانه</a><a href="#products">محصولات</a><a href="#about">درباره ما</a></div>
-   <div><h3>ارتباط با ما</h3><a href="https://wa.me/93705154008">واتساپ: +93 705 154 008</a><a href="#contact">تماس با فروشگاه</a></div>
-  </div>
-  <div class="copyright">© 2026 BLACKMARKSHOPING — طراحی و توسعه: MORTAZA HASHIMI</div>
- </div>
+<div class="container">
+<div class="footer-grid">
+<div><h3>BLACKMARKSHOPING</h3><p>فروشگاه آنلاین پوشاک مردانه؛ انتخابی مدرن برای استایل روزمره.</p></div>
+<div><h3>دسترسی سریع</h3><a href="#home">خانه</a><a href="#products">محصولات</a><a href="#about">درباره ما</a></div>
+<div><h3>ارتباط با ما</h3><a href="https://wa.me/93705154008">واتساپ: +93 705 154 008</a><a href="#contact">تماس با فروشگاه</a></div>
+</div>
+<div class="copyright">© 2026 BLACKMARKSHOPING — طراحی و توسعه: MORTAZA HASHIMI</div>
+</div>
 </footer>
 
-<!-- سبد خرید -->
 <div class="overlay" id="cartOverlay" onclick="if(event.target===this)closeCart()">
- <div class="drawer">
-  <div class="drawer-head"><h2>سبد خرید</h2><button class="close" onclick="closeCart()">×</button></div>
-  <div id="cartItems"></div>
-  <div class="cart-total"><span>مجموع:</span><span class="gold" id="cartTotal">0 افغانی</span></div>
-  <button class="btn full" onclick="openCheckout()">ادامه و ثبت سفارش</button>
- </div>
+<div class="drawer">
+<div class="drawer-head"><h2>سبد خرید</h2><button class="close" onclick="closeCart()">×</button></div>
+<div id="cartItems"></div>
+<div class="cart-total"><span>مجموع:</span><span class="gold" id="cartTotal">0 افغانی</span></div>
+<button class="btn full" onclick="openCheckout()">ادامه و ثبت سفارش</button>
+</div>
 </div>
 
-<!-- فرم سفارش -->
 <div class="modal" id="checkoutModal">
- <div class="modal-box">
-  <div class="drawer-head"><h2>ثبت سفارش</h2><button class="close" onclick="closeCheckout()">×</button></div>
-  <form id="checkoutForm">
-   <div class="field"><label>نام کامل</label><input id="customerName" required placeholder="نام شما"></div>
-   <div class="field"><label>شماره تماس</label><input id="customerPhone" required type="tel" placeholder="شماره واتساپ یا تماس"></div>
-   <div class="field"><label>ولایت</label>
-    <select id="province" required>
-     <option value="">انتخاب ولایت</option>
-     <option>کابل</option><option>بامیان</option><option>هرات</option><option>بلخ</option>
-     <option>قندهار</option><option>ننگرهار</option><option>کندز</option><option>غزنی</option>
-     <option>پروان</option><option>پنجشیر</option><option>دایکندی</option><option>فاریاب</option>
-     <option>بدخشان</option><option>تخار</option><option>بغلان</option><option>سمنگان</option>
-     <option>سرپل</option><option>جوزجان</option><option>فراه</option><option>نیمروز</option>
-     <option>هلمند</option><option>زابل</option><option>ارزگان</option><option>پکتیا</option>
-     <option>پکتیکا</option><option>خوست</option><option>لوگر</option><option>میدان وردک</option>
-     <option>کاپیسا</option><option>لغمان</option><option>کنر</option><option>نورستان</option>
-     <option>بادغیس</option><option>غور</option>
-    </select>
-   </div>
-   <div class="field"><label>شهر / ولسوالی</label><input id="district" required placeholder="شهر یا ولسوالی"></div>
-   <div class="field"><label>آدرس دقیق</label><input id="address" required placeholder="ناحیه، کوچه، نشانی..."></div>
-   <div class="field"><label>توضیحات (اختیاری)</label><input id="notes" placeholder="رنگ یا اندازه خاص و..."></div>
-   <p class="notice">با زدن دکمه زیر، واتساپ باز می‌شود. برای نهایی شدن سفارش، پیام آماده‌شده را در واتساپ ارسال کن. هزینه و زمان تحویل باید پیش از تأیید با فروشگاه هماهنگ شود.</p>
-   <button class="btn whatsapp full" type="submit">ارسال سفارش به واتساپ</button>
-  </form>
- </div>
+<div class="modal-box">
+<div class="drawer-head"><h2>ثبت سفارش</h2><button class="close" onclick="closeCheckout()">×</button></div>
+<form id="checkoutForm">
+<div class="field"><label>نام کامل</label><input id="customerName" required placeholder="نام شما"></div>
+<div class="field"><label>شماره تماس</label><input id="customerPhone" required type="tel" placeholder="شماره واتساپ یا تماس"></div>
+<div class="field">
+<label>ولایت</label>
+<select id="province" required>
+<option value="">انتخاب ولایت</option>
+<option>کابل</option><option>بامیان</option><option>هرات</option><option>بلخ</option><option>قندهار</option><option>ننگرهار</option><option>کندز</option><option>غزنی</option><option>پروان</option><option>پنجشیر</option><option>دایکندی</option><option>فاریاب</option><option>بدخشان</option><option>تخار</option><option>بغلان</option><option>سمنگان</option><option>سرپل</option><option>جوزجان</option><option>فراه</option><option>نیمروز</option><option>هلمند</option><option>زابل</option><option>ارزگان</option><option>پکتیا</option><option>پکتیکا</option><option>خوست</option><option>لوگر</option><option>میدان وردک</option><option>کاپیسا</option><option>لغمان</option><option>کنر</option><option>نورستان</option><option>بادغیس</option><option>غور</option>
+</select>
+</div>
+<div class="field"><label>شهر / ولسوالی</label><input id="district" required placeholder="شهر یا ولسوالی"></div>
+<div class="field"><label>آدرس دقیق</label><input id="address" required placeholder="ناحیه، کوچه، نشانی..."></div>
+<div class="field"><label>توضیحات (اختیاری)</label><input id="notes" placeholder="رنگ یا اندازه خاص و..."></div>
+<p class="notice">با زدن دکمه زیر، واتساپ باز می‌شود. برای نهایی شدن سفارش، پیام آماده‌شده را در واتساپ ارسال کن. هزینه و زمان تحویل باید پیش از تأیید با فروشگاه هماهنگ شود.</p>
+<button class="btn whatsapp full" type="submit">ارسال سفارش به واتساپ</button>
+</form>
+</div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+"use strict";
+
+/* تنظیمات Supabase */
+const SUPABASE_URL = "https://bkbnwxturxoqjgwzfsdw.supabase.co";
+
+/* کلید Publishable خودت را بین دو علامت نقل‌قول وارد کن.
+   کلید service_role یا secret را هرگز اینجا قرار نده. */
+const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE";
+
 const WHATSAPP_NUMBER = "93705154008";
 
-const products = [
- {id:1,name:"هودی مشکی کلاسیک",category:"هودی",price:850,image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=700",tag:"پرفروش"},
- {id:2,name:"تی‌شرت سفید ساده",category:"تی‌شرت",price:450,image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=700",tag:"جدید"},
- {id:3,name:"شلوار جین مردانه",category:"شلوار",price:950,image:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=700",tag:"محبوب"},
- {id:4,name:"کاپشن روزمره",category:"کاپشن",price:1600,image:"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=700",tag:"ویژه"},
- {id:5,name:"سویشرت اسپرت",category:"هودی",price:900,image:"https://images.unsplash.com/photo-1578681994506-b8f463449011?w=700",tag:"جدید"},
- {id:6,name:"تی‌شرت مشکی",category:"تی‌شرت",price:480,image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=700",tag:"پرفروش"},
- {id:7,name:"شلوار کژوال",category:"شلوار",price:780,image:"https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=700",tag:"محبوب"},
- {id:8,name:"جاکت مردانه",category:"کاپشن",price:1450,image:"https://images.unsplash.com/photo-1544923246-77307dd654cb?w=700",tag:"ویژه"}
+const supabaseReady =
+SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_") &&
+!SUPABASE_PUBLISHABLE_KEY.includes("PASTE_");
+
+const supabaseClient = supabaseReady
+? window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY)
+: null;
+
+/* هشت محصول نمونه */
+const sampleProducts = [
+{id:"sample-1",name:"هودی مشکی کلاسیک",category:"هودی",price:850,image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=700",tag:"پرفروش"},
+{id:"sample-2",name:"تی‌شرت سفید ساده",category:"تی‌شرت",price:450,image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=700",tag:"جدید"},
+{id:"sample-3",name:"شلوار جین مردانه",category:"شلوار",price:950,image:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=700",tag:"محبوب"},
+{id:"sample-4",name:"کاپشن روزمره",category:"کاپشن",price:1600,image:"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=700",tag:"ویژه"},
+{id:"sample-5",name:"سویشرت اسپرت",category:"هودی",price:900,image:"https://images.unsplash.com/photo-1578681994506-b8f463449011?w=700",tag:"جدید"},
+{id:"sample-6",name:"تی‌شرت مشکی",category:"تی‌شرت",price:480,image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=700",tag:"پرفروش"},
+{id:"sample-7",name:"شلوار کژوال",category:"شلوار",price:780,image:"https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=700",tag:"محبوب"},
+{id:"sample-8",name:"جاکت مردانه",category:"کاپشن",price:1450,image:"https://images.unsplash.com/photo-1544923246-77307dd654cb?w=700",tag:"ویژه"}
 ];
 
+let products=[...sampleProducts];
 let selectedCategory="همه";
 let cart=JSON.parse(localStorage.getItem("blackmark_cart")||"[]");
 
-function money(n){return Number(n).toLocaleString("en-US")+" افغانی"}
+function money(n){
+return Number(n||0).toLocaleString("en-US")+" افغانی";
+}
+
+function safeText(value){
+return String(value??"").replace(/[&<>"']/g,ch=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[ch]));
+}
+
+function categoryFromName(name){
+const n=String(name||"");
+if(/هودی|سویشرت/i.test(n))return "هودی";
+if(/تی.?شرت|تیشرت/i.test(n))return "تی‌شرت";
+if(/شلوار|جین/i.test(n))return "شلوار";
+if(/کاپشن|جاکت|ژاکت/i.test(n))return "کاپشن";
+return "سایر";
+}
+
+function normalizeDbProduct(row){
+const images=Array.isArray(row.image_urls)?row.image_urls:[];
+return {
+id:String(row.id),
+name:row.name||"محصول بدون نام",
+category:categoryFromName(row.name),
+price:Number(row.price_afn||0),
+oldPrice:row.old_price_afn==null?null:Number(row.old_price_afn),
+image:images[0]||sampleProducts[0].image,
+tag:row.is_featured?"ویژه":"محصول",
+description:row.description||""
+};
+}
+
+async function loadProducts(){
+const status=document.getElementById("dbStatus");
+
+if(!supabaseClient){
+products=[...sampleProducts];
+status.textContent="محصولات نمونه نمایش داده می‌شوند. برای اتصال دیتابیس، کلید Publishable را در کد وارد کن.";
+renderProducts();
+saveCart();
+return;
+}
+
+try{
+const {data,error}=await supabaseClient
+.from("products")
+.select("id,name,slug,description,price_afn,old_price_afn,image_urls,is_featured,is_active,created_at")
+.eq("is_active",true)
+.order("created_at",{ascending:false});
+
+if(error)throw error;
+
+products=(data&&data.length)?data.map(normalizeDbProduct):[...sampleProducts];
+
+status.textContent=(data&&data.length)
+?"محصولات از دیتابیس بارگذاری شدند."
+:"هنوز محصول فعالی در دیتابیس نیست؛ محصولات نمونه نمایش داده می‌شوند.";
+
+}catch(err){
+products=[...sampleProducts];
+status.textContent="اتصال به دیتابیس انجام نشد؛ فعلاً محصولات نمونه نمایش داده می‌شوند. کلید و دسترسی جدول را بررسی کن.";
+console.error("Supabase products error:",err);
+}
+
+cart=cart.filter(item=>products.some(p=>p.id===String(item.id)));
+renderProducts();
+saveCart();
+}
 
 function renderProducts(){
- const q=document.getElementById("search").value.trim().toLowerCase();
- const list=products.filter(p=>(selectedCategory==="همه"||p.category===selectedCategory)&&p.name.toLowerCase().includes(q));
- document.getElementById("productsGrid").innerHTML=list.length?list.map(p=>`
- <article class="product">
-  <div class="product-image"><img src="${p.image}" alt="${p.name}" loading="lazy"><span class="tag">${p.tag}</span></div>
-  <div class="product-info"><h3>${p.name}</h3><p>${p.category} | پوشاک مردانه</p>
-   <div class="price-row"><span class="price">${money(p.price)}</span><button class="add" onclick="addToCart(${p.id})">+ افزودن</button></div>
-  </div>
- </article>`).join(""):'<div class="empty">محصولی پیدا نشد.</div>';
+const q=document.getElementById("search").value.trim().toLowerCase();
+
+const list=products.filter(p=>
+(selectedCategory==="همه"||p.category===selectedCategory)&&
+(p.name.toLowerCase().includes(q)||
+String(p.description||"").toLowerCase().includes(q))
+);
+
+document.getElementById("productsGrid").innerHTML=list.length
+?list.map(p=>`
+<article class="product">
+<div class="product-image">
+<img src="${safeText(p.image)}" alt="${safeText(p.name)}" loading="lazy">
+<span class="tag">${safeText(p.tag)}</span>
+</div>
+<div class="product-info">
+<h3>${safeText(p.name)}</h3>
+<p>${safeText(p.category)} | پوشاک مردانه</p>
+<div class="price-row">
+<span class="price">${money(p.price)}</span>
+<button class="add" onclick="addToCart('${safeText(p.id)}')">+ افزودن</button>
+</div>
+</div>
+</article>`).join("")
+:'<div class="empty">محصولی پیدا نشد.</div>';
 }
 
 function setCategory(cat,btn){
- selectedCategory=cat;
- document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
- if(btn)btn.classList.add("active");
- else document.querySelectorAll(".filter").forEach(b=>{if(b.textContent.trim()===cat)b.classList.add("active")});
- document.getElementById("products").scrollIntoView({behavior:"smooth"});
- renderProducts();
+selectedCategory=cat;
+document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+
+if(btn){
+btn.classList.add("active");
+}else{
+document.querySelectorAll(".filter").forEach(b=>{
+if(b.textContent.trim()===cat)b.classList.add("active");
+});
+}
+
+document.getElementById("products").scrollIntoView({behavior:"smooth"});
+renderProducts();
+}
+
+function toggleMobileNav(){
+const nav=document.getElementById("mobileNav");
+nav.style.display=nav.style.display==="block"?"none":"block";
 }
 
 function saveCart(){
- localStorage.setItem("blackmark_cart",JSON.stringify(cart));
- document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0);
- renderCart();
+localStorage.setItem("blackmark_cart",JSON.stringify(cart));
+document.getElementById("cartCount").textContent=
+cart.reduce((s,i)=>s+i.qty,0);
+renderCart();
 }
 
 function addToCart(id){
- const item=cart.find(i=>i.id===id);
- if(item)item.qty++;
- else cart.push({id,qty:1});
- saveCart();
- const btn=event.currentTarget;
- btn.textContent="اضافه شد ✓";
- setTimeout(()=>btn.textContent="+ افزودن",900);
+id=String(id);
+const item=cart.find(i=>String(i.id)===id);
+if(item)item.qty++;
+else cart.push({id,qty:1});
+saveCart();
 }
 
 function renderCart(){
- const box=document.getElementById("cartItems");
- if(!cart.length){box.innerHTML='<p class="empty">سبد خرید خالی است.</p>';document.getElementById("cartTotal").textContent=money(0);return}
- box.innerHTML=cart.map(i=>{
-  const p=products.find(x=>x.id===i.id);
-  return `<div class="cart-item">
-   <img src="${p.image}" alt="${p.name}">
-   <div style="flex:1"><strong>${p.name}</strong><small>${money(p.price)}</small>
-    <div class="qty"><button onclick="changeQty(${p.id},-1)">−</button>${i.qty}<button onclick="changeQty(${p.id},1)">+</button><button class="remove" onclick="removeItem(${p.id})">حذف</button></div>
-   </div>
-  </div>`;
- }).join("");
- document.getElementById("cartTotal").textContent=money(cart.reduce((s,i)=>s+products.find(p=>p.id===i.id).price*i.qty,0));
+const box=document.getElementById("cartItems");
+
+if(!cart.length){
+box.innerHTML='<p class="empty">سبد خرید خالی است.</p>';
+document.getElementById("cartTotal").textContent=money(0);
+return;
 }
-function changeQty(id,n){const i=cart.find(x=>x.id===id);if(i){i.qty+=n;if(i.qty<=0)cart=cart.filter(x=>x.id!==id)}saveCart()}
-function removeItem(id){cart=cart.filter(x=>x.id!==id);saveCart()}
-function openCart(){document.getElementById("cartOverlay").classList.add("show");renderCart()}
-function closeCart(){document.getElementById("cartOverlay").classList.remove("show")}
+
+const valid=cart.map(i=>({
+...i,
+product:products.find(p=>String(p.id)===String(i.id))
+})).filter(i=>i.product);
+
+box.innerHTML=valid.map(i=>`
+<div class="cart-item">
+<img src="${safeText(i.product.image)}" alt="${safeText(i.product.name)}">
+<div style="flex:1">
+<strong>${safeText(i.product.name)}</strong>
+<small>${money(i.product.price)}</small>
+<div class="qty">
+<button onclick="changeQty('${safeText(i.id)}',-1)">−</button>
+${i.qty}
+<button onclick="changeQty('${safeText(i.id)}',1)">+</button>
+<button class="remove" onclick="removeItem('${safeText(i.id)}')">حذف</button>
+</div>
+</div>
+</div>`).join("");
+
+const total=valid.reduce((s,i)=>s+i.product.price*i.qty,0);
+document.getElementById("cartTotal").textContent=money(total);
+}
+
+function changeQty(id,n){
+const i=cart.find(x=>String(x.id)===String(id));
+if(i){
+i.qty+=n;
+if(i.qty<=0)cart=cart.filter(x=>String(x.id)!==String(id));
+}
+saveCart();
+}
+
+function removeItem(id){
+cart=cart.filter(x=>String(x.id)!==String(id));
+saveCart();
+}
+
+function openCart(){
+document.getElementById("cartOverlay").classList.add("show");
+renderCart();
+}
+
+function closeCart(){
+document.getElementById("cartOverlay").classList.remove("show");
+}
+
 function openCheckout(){
- if(!cart.length){alert("سبد خرید شما خالی است.");return}
- closeCart();document.getElementById("checkoutModal").classList.add("show");
+if(!cart.length){
+alert("سبد خرید شما خالی است.");
+return;
 }
-function closeCheckout(){document.getElementById("checkoutModal").classList.remove("show")}
+closeCart();
+document.getElementById("checkoutModal").classList.add("show");
+}
+
+function closeCheckout(){
+document.getElementById("checkoutModal").classList.remove("show");
+}
 
 document.getElementById("checkoutForm").addEventListener("submit",function(e){
- e.preventDefault();
- if(!cart.length){alert("سبد خرید خالی است.");return}
- const name=document.getElementById("customerName").value.trim();
- const phone=document.getElementById("customerPhone").value.trim();
- const province=document.getElementById("province").value;
- const district=document.getElementById("district").value.trim();
- const address=document.getElementById("address").value.trim();
- const notes=document.getElementById("notes").value.trim();
+e.preventDefault();
 
- const lines=cart.map(i=>{
-  const p=products.find(x=>x.id===i.id);
-  return `• ${p.name} | تعداد: ${i.qty} | ${money(p.price*i.qty)}`;
- }).join("\n");
- const total=cart.reduce((s,i)=>s+products.find(p=>p.id===i.id).price*i.qty,0);
+if(!cart.length){
+alert("سبد خرید شما خالی است.");
+return;
+}
 
- const message=
-`سلام BLACKMARKSHOPING، می‌خواهم این سفارش را ثبت کنم:
+const name=document.getElementById("customerName").value.trim();
+const phone=document.getElementById("customerPhone").value.trim();
+const province=document.getElementById("province").value;
+const district=document.getElementById("district").value.trim();
+const address=document.getElementById("address").value.trim();
+const notes=document.getElementById("notes").value.trim();
+
+const valid=cart.map(i=>({
+...i,
+product:products.find(p=>String(p.id)===String(i.id))
+})).filter(i=>i.product);
+
+const lines=valid.map(i=>
+`• ${i.product.name} | تعداد: ${i.qty} | ${money(i.product.price*i.qty)}`
+).join("\n");
+
+const total=valid.reduce((s,i)=>s+i.product.price*i.qty,0);
+
+const message=`سلام BLACKMARKSHOPING، می‌خواهم این سفارش را ثبت کنم:
 
 ${lines}
 
@@ -408,11 +577,24 @@ ${lines}
 
 لطفاً موجودی، هزینه و زمان تحویل را تأیید کنید.`;
 
- window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),"_blank");
+window.open(
+"https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),
+"_blank"
+);
+
+closeCheckout();
+});
+
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape"){
+closeCart();
+closeCheckout();
+}
 });
 
 renderProducts();
 saveCart();
+loadProducts();
 </script>
 </body>
 </html>
