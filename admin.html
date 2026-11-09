@@ -1,289 +1,54 @@
-
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BLACKMARKSHOPING | Admin</title>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LaunchKit AI — Operator</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#090909;color:#eee;font-family:Arial,Tahoma,sans-serif}
-header{background:#151515;padding:20px;border-bottom:1px solid #b99548}
-header h2{margin:0;color:#d8b45b}
-main{max-width:950px;margin:25px auto;padding:15px}
-.card{background:#151515;border:1px solid #333;border-radius:12px;padding:18px;margin-bottom:18px}
-h3{color:#d8b45b;margin-top:0}
-input,textarea{width:100%;padding:13px;margin:7px 0 13px;background:#080808;color:white;border:1px solid #444;border-radius:7px;font-size:15px}
-textarea{min-height:80px}
-button{border:0;border-radius:7px;padding:12px 17px;background:#c5a04b;color:#111;font-weight:bold;cursor:pointer;margin:4px}
-button.secondary{background:#333;color:white}
-button.danger{background:#a52d2d;color:white}
-.product{border-bottom:1px solid #333;padding:13px 0;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.product img{width:65px;height:65px;object-fit:cover;border-radius:7px}
-.small{color:#aaa;font-size:13px}
-.hidden{display:none}
-#message{padding:10px;color:#e5c36d;white-space:pre-wrap}
-label{color:#ccc;font-size:14px}
-</style>
-</head>
-<body>
-
-<header>
-<h2>BLACKMARKSHOPING</h2>
-<div class="small">پنل مدیریت فروشگاه</div>
-</header>
-
-<main>
-<div id="message">برای شروع، کلید عمومی Supabase را وارد کن.</div>
-
-<section class="card" id="loginBox">
-<h3>ورود مدیر</h3>
-<label>کلید عمومی Supabase (Publishable Key)</label>
-<input id="apiKey" placeholder="sb_publishable_..." autocomplete="off">
-<label>ایمیل حساب مدیر</label>
-<input id="email" type="email" placeholder="ایمیل مدیر">
-<label>رمز عبور</label>
-<input id="password" type="password" placeholder="رمز عبور">
-<button onclick="login()">ورود به پنل</button>
-</section>
-
-<section id="dashboard" class="hidden">
-<div class="card">
-<h3 id="formTitle">افزودن محصول جدید</h3>
-<input id="productName" placeholder="نام محصول">
-<textarea id="description" placeholder="توضیحات محصول"></textarea>
-<input id="price" type="number" placeholder="قیمت به افغانی">
-<input id="oldPrice" type="number" placeholder="قیمت قبلی (اختیاری)">
-<textarea id="images" placeholder="لینک عکس‌ها؛ هر لینک در یک خط"></textarea>
-
-<label><input id="featured" type="checkbox" style="width:auto"> محصول ویژه باشد</label>
-<br>
-<label><input id="active" type="checkbox" checked style="width:auto"> محصول فعال باشد</label>
-<br><br>
-<button onclick="saveProduct()">ذخیره محصول</button>
-<button class="secondary" onclick="resetForm()">پاک کردن فرم</button>
-<input type="hidden" id="editId">
-</div>
-
-<div class="card">
-<h3>محصولات فروشگاه</h3>
-<button onclick="loadProducts()">به‌روزرسانی فهرست</button>
-<div id="productsList">در حال دریافت محصولات...</div>
-</div>
-
-<button class="danger" onclick="logout()">خروج از حساب</button>
-</section>
+*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#f2f5ff;font:15px/1.5 system-ui,Arial}.wrap{max-width:1100px;margin:auto;padding:28px 18px 60px}header{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}h1{font-size:25px;margin:0}small,.muted{color:#9eabc5}.panel{background:#121a30;border:1px solid #293754;border-radius:15px;padding:22px;margin-top:20px}input,select,textarea{background:#0b1327;color:#fff;border:1px solid #34425e;border-radius:9px;padding:11px;font:inherit;width:100%;margin:6px 0 12px}button{background:#9bf0cf;color:#082018;border:0;border-radius:9px;padding:10px 15px;font-weight:800;cursor:pointer;margin:4px}button.secondary{background:#263653;color:#fff}button:disabled{opacity:.5}#app{display:none}.login{max-width:420px;margin:10vh auto}.order{border-top:1px solid #293754;padding:17px 0}.order h3{margin:0}.meta{font-size:12px;color:#9eabc5}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.output{white-space:pre-wrap;background:#0a1225;padding:14px;border-radius:9px;overflow-wrap:anywhere}.notice{color:#9bf0cf;min-height:22px}label{font-size:13px;color:#cbd5e8}
+</style></head><body><main class="wrap">
+<header><div><h1>LaunchKit AI <span style="color:#9bf0cf">/ Operator</span></h1><small>Private order review dashboard</small></div><button id="logout" class="secondary" style="display:none">Sign out</button></header>
+<section class="panel login" id="login"><h2>Operator sign in</h2><p class="muted">Use an account granted the admin app_metadata role.</p><label>Email</label><input id="email" type="email" autocomplete="username"><label>Password</label><input id="password" type="password" autocomplete="current-password"><button id="signIn">Sign in</button><div id="loginMsg" class="notice"></div></section>
+<section id="app"><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2>Orders</h2><button id="refresh" class="secondary">Refresh</button></div><div id="msg" class="notice"></div><div id="orders" class="muted">Loading…</div></div></section>
 </main>
-
 <script>
-const PROJECT_URL = "https://bkbnwxturxoqjgwzfsdw.supabase.co";
-let db = null;
-let currentProducts = [];
-
-function msg(text){
- document.getElementById("message").textContent=text;
+const SUPABASE_URL='YOUR_SUPABASE_URL',SUPABASE_ANON_KEY='YOUR_SUPABASE_ANON_KEY';
+const $=id=>document.getElementById(id);
+let sb=null;
+if(!SUPABASE_URL.startsWith('YOUR_')&&!SUPABASE_ANON_KEY.startsWith('YOUR_'))sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+function say(t){$('msg').textContent=t}
+async function sessionCheck(){
+ if(!sb){$('loginMsg').textContent='Configure Supabase URL and anon key in admin.html first.';return;}
+ const {data}=await sb.auth.getSession();
+ if(data.session){$('login').style.display='none';$('app').style.display='block';$('logout').style.display='inline-block';loadOrders();}
 }
-
-function initClient(){
- const key=document.getElementById("apiKey").value.trim();
- if(!key.startsWith("sb_publishable_")){
-  msg("کلید عمومی معتبر Supabase را وارد کن.");
-  return false;
- }
- db=window.supabase.createClient(PROJECT_URL,key);
- return true;
+$('signIn').onclick=async()=>{if(!sb)return;const {error}=await sb.auth.signInWithPassword({email:$('email').value,password:$('password').value});$('loginMsg').textContent=error?error.message:'Signed in.';if(!error)sessionCheck();};
+$('logout').onclick=async()=>{await sb.auth.signOut();location.reload()};
+$('refresh').onclick=loadOrders;
+async function loadOrders(){
+ say('Loading orders…');const {data,error}=await sb.from('orders').select('*').order('created_at',{ascending:false}).limit(100);
+ if(error){say(error.message);return;}
+ $('orders').innerHTML='';
+ if(!data.length){$('orders').textContent='No orders yet.';say('');return;}
+ data.forEach(o=>{
+  const el=document.createElement('article');el.className='order';
+  const title=document.createElement('h3');title.textContent=o.product_name+' — '+o.customer_name;
+  const meta=document.createElement('div');meta.className='meta';meta.textContent=new Date(o.created_at).toLocaleString()+' · '+o.email+' · '+o.status+' · payment: '+o.payment_status;
+  const details=document.createElement('p');details.textContent='Audience: '+o.target_audience+'\nChannel: '+o.channel+' · Language: '+o.language+'\nBrief: '+o.product_details;
+  const controls=document.createElement('div');controls.className='actions';
+  const status=document.createElement('select');['pending','confirmed','generating','review','delivered','rejected'].forEach(s=>{let op=document.createElement('option');op.value=s;op.textContent=s;op.selected=s===o.status;status.append(op)});
+  const pay=document.createElement('select');['unverified','verified','refunded'].forEach(s=>{let op=document.createElement('option');op.value=s;op.textContent='Payment: '+s;op.selected=s===o.payment_status;pay.append(op)});
+  const save=document.createElement('button');save.textContent='Save status';save.onclick=async()=>{const {error}=await sb.from('orders').update({status:status.value,payment_status:pay.value,updated_at:new Date().toISOString()}).eq('id',o.id);say(error?error.message:'Order updated.');if(!error)loadOrders()};
+  const gen=document.createElement('button');gen.className='secondary';gen.textContent='Generate content';gen.onclick=()=>generate(o.id,gen,out);
+  const out=document.createElement('div');out.className='output';out.style.display=o.generated_content?'block':'none';if(o.generated_content)out.textContent=JSON.stringify(o.generated_content,null,2);
+  controls.append(status,pay,save,gen);el.append(title,meta,details,controls,out);$('orders').append(el);
+ });
+ say(data.length+' order(s) loaded.');
 }
-
-async function login(){
- if(!initClient()) return;
-
- const email=document.getElementById("email").value.trim();
- const password=document.getElementById("password").value;
-
- if(!email || !password){
-  msg("ایمیل و رمز عبور را وارد کن.");
-  return;
- }
-
- msg("در حال بررسی ورود...");
-
- const {data,error}=await db.auth.signInWithPassword({email,password});
-
- if(error){
-  msg("خطای ورود: "+error.message);
-  return;
- }
-
- const {data:admin,error:adminError}=await db
-  .from("admin_users")
-  .select("user_id")
-  .eq("user_id",data.user.id)
-  .maybeSingle();
-
- if(adminError || !admin){
-  await db.auth.signOut();
-  msg("این حساب دسترسی مدیر ندارد.");
-  return;
- }
-
- document.getElementById("loginBox").classList.add("hidden");
- document.getElementById("dashboard").classList.remove("hidden");
- msg("ورود موفق بود.");
- loadProducts();
+async function generate(id,button,out){
+ button.disabled=true;button.textContent='Generating…';say('Generating content with the configured AI function…');
+ try{
+  const {data,error}=await sb.functions.invoke('generate-pack',{body:{order_id:id}});
+  if(error)throw error;out.style.display='block';out.textContent=JSON.stringify(data,null,2);say('Generated pack saved. Review it before delivery.');
+ }catch(e){say(e.message||'Generation failed.');}
+ finally{button.disabled=false;button.textContent='Generate content';}
 }
-
-async function loadProducts(){
- msg("در حال دریافت محصولات...");
- const {data,error}=await db
-  .from("products")
-  .select("id,name,slug,description,price_afn,old_price_afn,image_urls,is_featured,is_active,created_at")
-  .order("created_at",{ascending:false});
-
- if(error){
-  msg("خطا در دریافت محصولات: "+error.message);
-  return;
- }
-
- currentProducts=data||[];
- renderProducts();
- msg("فهرست محصولات به‌روزرسانی شد.");
-}
-
-function renderProducts(){
- const box=document.getElementById("productsList");
-
- if(!currentProducts.length){
-  box.innerHTML="<p>هنوز محصولی در دیتابیس ثبت نشده است.</p>";
-  return;
- }
-
- box.innerHTML=currentProducts.map((p)=>{
-  const image=Array.isArray(p.image_urls)?p.image_urls[0]:"";
-  return `
-   <div class="product">
-    <div style="display:flex;gap:10px;align-items:center">
-     ${image?`<img src="${safe(image)}" alt="">`:""}
-     <div>
-      <strong>${safe(p.name)}</strong>
-      <div class="small">${Number(p.price_afn||0).toLocaleString("en-US")} افغانی</div>
-      <div class="small">${p.is_active?"فعال":"غیرفعال"}</div>
-     </div>
-    </div>
-    <div>
-     <button onclick="editProduct('${p.id}')">ویرایش</button>
-     <button class="danger" onclick="deleteProduct('${p.id}')">حذف</button>
-    </div>
-   </div>`;
- }).join("");
-}
-
-function safe(value){
- return String(value??"").replace(/[&<>"']/g,c=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
- }[c]));
-}
-
-function resetForm(){
- document.getElementById("editId").value="";
- document.getElementById("productName").value="";
- document.getElementById("description").value="";
- document.getElementById("price").value="";
- document.getElementById("oldPrice").value="";
- document.getElementById("images").value="";
- document.getElementById("featured").checked=false;
- document.getElementById("active").checked=true;
- document.getElementById("formTitle").textContent="افزودن محصول جدید";
-}
-
-function editProduct(id){
- const p=currentProducts.find(x=>x.id===id);
- if(!p)return;
-
- document.getElementById("editId").value=p.id;
- document.getElementById("productName").value=p.name||"";
- document.getElementById("description").value=p.description||"";
- document.getElementById("price").value=p.price_afn||"";
- document.getElementById("oldPrice").value=p.old_price_afn||"";
- document.getElementById("images").value=
-  Array.isArray(p.image_urls)?p.image_urls.join("\n"):"";
- document.getElementById("featured").checked=!!p.is_featured;
- document.getElementById("active").checked=!!p.is_active;
- document.getElementById("formTitle").textContent="ویرایش محصول";
- window.scrollTo({top:0,behavior:"smooth"});
-}
-
-async function saveProduct(){
- const name=document.getElementById("productName").value.trim();
- const price=Number(document.getElementById("price").value);
- const old=document.getElementById("oldPrice").value;
- const id=document.getElementById("editId").value;
-
- if(!name || !price || price<0){
-  msg("نام و قیمت معتبر محصول را وارد کن.");
-  return;
- }
-
- const slug=name.toLowerCase()
-  .replace(/[^a-z0-9]+/g,"-")
-  .replace(/^-|-$/g,"") || "product-"+Date.now();
-
- const imageUrls=document.getElementById("images").value
-  .split("\n").map(x=>x.trim()).filter(Boolean);
-
- const payload={
-  name,
-  slug:slug+"-"+Date.now(),
-  description:document.getElementById("description").value.trim(),
-  price_afn:price,
-  old_price_afn:old?Number(old):null,
-  image_urls:imageUrls,
-  is_featured:document.getElementById("featured").checked,
-  is_active:document.getElementById("active").checked
- };
-
- msg("در حال ذخیره محصول...");
-
- let result;
-
- if(id){
-  delete payload.slug;
-  result=await db.from("products").update(payload).eq("id",id);
- }else{
-  result=await db.from("products").insert(payload);
- }
-
- if(result.error){
-  msg("خطا در ذخیره: "+result.error.message);
-  return;
- }
-
- msg("محصول با موفقیت ذخیره شد.");
- resetForm();
- loadProducts();
-}
-
-async function deleteProduct(id){
- if(!confirm("آیا از حذف این محصول مطمئنی؟"))return;
-
- const {error}=await db.from("products").delete().eq("id",id);
-
- if(error){
-  msg("خطا در حذف: "+error.message);
-  return;
- }
-
- msg("محصول حذف شد.");
- loadProducts();
-}
-
-async function logout(){
- if(db) await db.auth.signOut();
- document.getElementById("dashboard").classList.add("hidden");
- document.getElementById("loginBox").classList.remove("hidden");
- document.getElementById("password").value="";
- msg("از حساب خارج شدی.");
-}
-</script>
-</body>
-</html>
+sessionCheck();
+</script></body></html>
