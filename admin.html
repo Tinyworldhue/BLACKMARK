@@ -9,7 +9,7 @@
 <section id="app"><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2>Orders</h2><button id="refresh" class="secondary">Refresh</button></div><div id="msg" class="notice"></div><div id="orders" class="muted">Loading…</div></div></section>
 </main>
 <script>
-const SUPABASE_URL='YOUR_SUPABASE_URL',SUPABASE_ANON_KEY='YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL='https://dexeerbibbkmavkmzyhn.supabase.co',SUPABASE_ANON_KEY='sb_publishable_4UraNsSgI6DtAzLFOCcBfQ_dWG3Bvpf';
 const $=id=>document.getElementById(id);
 let sb=null;
 if(!SUPABASE_URL.startsWith('YOUR_')&&!SUPABASE_ANON_KEY.startsWith('YOUR_'))sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
