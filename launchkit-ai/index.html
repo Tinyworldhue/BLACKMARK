@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="LaunchKit AI turns product details into ready-to-use marketing content.">
+<title>LaunchKit AI — Product content, ready to launch</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--line:#263451;--text:#f3f6ff;--muted:#a8b4ce;--accent:#9bf0cf;--blue:#8aa8ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% 0%,#1c3150 0,transparent 42%),var(--bg);color:var(--text);font:16px/1.55 Inter,system-ui,Arial,sans-serif}a{color:var(--accent)}.wrap{max-width:1080px;margin:auto;padding:26px 22px 70px}.nav{display:flex;justify-content:space-between;align-items:center;gap:18px}.brand{font-weight:850;letter-spacing:.5px;font-size:19px}.brand span{color:var(--accent)}.nav a{font-size:14px;text-decoration:none}.hero{padding:76px 0 46px;max-width:760px}.eyebrow{color:var(--accent);font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(40px,7vw,70px);line-height:1.04;letter-spacing:-2.7px;margin:16px 0}.hero p{color:var(--muted);font-size:18px;max-width:650px}.tag{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:6px 12px;color:var(--muted);font-size:12px;margin:6px 5px 0 0}.grid{display:grid;grid-template-columns:1fr 1.05fr;gap:22px;align-items:start}.panel{background:rgba(18,26,48,.92);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 20px 70px #0003}.panel h2{margin:0 0 7px;font-size:23px}.muted{color:var(--muted);font-size:14px}.features{display:grid;gap:15px;margin-top:28px}.feature{display:flex;gap:13px}.num{width:32px;height:32px;flex:0 0 32px;border-radius:10px;background:#20354a;color:var(--accent);display:grid;place-items:center;font-weight:800}label{display:block;font-size:13px;color:#d8e0f2;margin:17px 0 7px}input,select,textarea{width:100%;background:#0b1327;color:var(--text);border:1px solid #34425e;border-radius:10px;padding:12px 13px;font:inherit;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--accent)}textarea{min-height:95px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}button{border:0;border-radius:11px;background:var(--accent);color:#092019;font-weight:850;padding:14px 18px;font:inherit;cursor:pointer;width:100%;margin-top:20px}button:disabled{opacity:.6;cursor:wait}.notice{margin-top:14px;font-size:13px;color:var(--muted);min-height:20px}.fine{border-top:1px solid var(--line);margin-top:22px;padding-top:15px;color:var(--muted);font-size:12px}.footer{margin-top:36px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero{padding:54px 0 32px}.panel{padding:21px}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main class="wrap">
+<nav class="nav"><div class="brand">LAUNCHKIT<span> AI</span></div><a href="#order">Start an order ↘</a></nav>
+<section class="hero"><div class="eyebrow">A sharper launch starts here</div><h1>Product content.<br><span style="color:var(--accent)">Ready to launch.</span></h1><p>Turn a product brief into a practical marketing pack: clear product copy, social captions, ad angles and calls to action — prepared for your review.</p><span class="tag">Product descriptions</span><span class="tag">Social content</span><span class="tag">Ad concepts</span><span class="tag">Human-reviewed workflow</span></section>
+<section class="grid">
+<div class="panel"><h2>What you receive</h2><p class="muted">A focused content pack built around one product and one target audience.</p><div class="features">
+<div class="feature"><div class="num">01</div><div><b>Product description</b><div class="muted">A clear, benefit-led description for your store or landing page.</div></div></div>
+<div class="feature"><div class="num">02</div><div><b>Social media pack</b><div class="muted">Three post captions with distinct angles and calls to action.</div></div></div>
+<div class="feature"><div class="num">03</div><div><b>Ad concepts</b><div class="muted">Three hooks and short ad variations to test.</div></div></div>
+<div class="feature"><div class="num">04</div><div><b>Review before delivery</b><div class="muted">Every generated pack is checked by the operator before it is sent.</div></div></div></div>
+<div class="fine">This is an early-access service. Submitting a request does not mean payment has been made or that delivery is guaranteed. We will contact you to confirm scope, price and timing.</div></div>
+<div class="panel" id="order"><h2>Request your content pack</h2><p class="muted">Share the essentials. We will follow up to confirm the order.</p>
+<form id="orderForm">
+<label for="name">Your name</label><input id="name" name="name" required maxlength="100" autocomplete="name" placeholder="Name">
+<div class="row"><div><label for="email">Email</label><input id="email" name="email" type="email" required maxlength="200" autocomplete="email" placeholder="you@example.com"></div><div><label for="channel">Main channel</label><select id="channel" name="channel"><option>Instagram</option><option>Online store</option><option>Facebook</option><option>TikTok</option><option>Other</option></select></div></div>
+<label for="product">Product or service name</label><input id="product" name="product" required maxlength="160" placeholder="What are you selling?">
+<label for="audience">Who is the target customer?</label><input id="audience" name="audience" required maxlength="240" placeholder="Describe the audience">
+<label for="details">Product details and key benefits</label><textarea id="details" name="details" required maxlength="3000" placeholder="Features, price range, location, differentiators, tone..."></textarea>
+<label for="language">Content language</label><select id="language" name="language"><option>English</option><option>Persian / Dari</option><option>Arabic</option><option>Other (explain in details)</option></select>
+<label for="reference">Website or reference link (optional)</label><input id="reference" name="reference" type="url" maxlength="500" placeholder="https://">
+<button id="submitBtn" type="submit">Send content request</button><div class="notice" id="notice" role="status" aria-live="polite"></div>
+</form></div></section>
+<footer class="footer"><span>© <span id="year"></span> LaunchKit AI</span><span>Contact: <a href="mailto:hello@launchkit.example">hello@launchkit.example</a> · Replace with your business email before launch</span></footer>
+</main>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+// Add your Supabase project URL and anon key after running supabase/schema.sql.
+const SUPABASE_URL='YOUR_SUPABASE_URL';
+const SUPABASE_ANON_KEY='YOUR_SUPABASE_ANON_KEY';
+const form=document.getElementById('orderForm'),btn=document.getElementById('submitBtn'),notice=document.getElementById('notice');
+form.addEventListener('submit',async e=>{
+ e.preventDefault();notice.textContent='';
+ if(SUPABASE_URL.startsWith('YOUR_')||SUPABASE_ANON_KEY.startsWith('YOUR_')){notice.textContent='The order system is not connected yet. The owner must configure the database before accepting requests.';return;}
+ btn.disabled=true;btn.textContent='Sending…';
+ const d=Object.fromEntries(new FormData(form).entries());
+ try{
+  const res=await fetch(SUPABASE_URL+'/rest/v1/orders',{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+SUPABASE_ANON_KEY,'Prefer':'return=minimal'},body:JSON.stringify({customer_name:d.name,email:d.email,channel:d.channel,product_name:d.product,target_audience:d.audience,product_details:d.details,language:d.language,reference_url:d.reference||null,status:'pending'})});
+  if(!res.ok)throw new Error('Request failed ('+res.status+'). Please try again later.');
+  form.reset();notice.textContent='Request received. Your reference is being reviewed; payment is not requested at this stage.';
+ }catch(err){notice.textContent=err.message||'Could not send request. Please try again.';}
+ finally{btn.disabled=false;btn.textContent='Send content request';}
+});
+</script></body></html>
