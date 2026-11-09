@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LaunchKit AI — Operator</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#f2f5ff;font:15px/1.5 system-ui,Arial}.wrap{max-width:1100px;margin:auto;padding:28px 18px 60px}header{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}h1{font-size:25px;margin:0}small,.muted{color:#9eabc5}.panel{background:#121a30;border:1px solid #293754;border-radius:15px;padding:22px;margin-top:20px}input,select,textarea{background:#0b1327;color:#fff;border:1px solid #34425e;border-radius:9px;padding:11px;font:inherit;width:100%;margin:6px 0 12px}button{background:#9bf0cf;color:#082018;border:0;border-radius:9px;padding:10px 15px;font-weight:800;cursor:pointer;margin:4px}button.secondary{background:#263653;color:#fff}button:disabled{opacity:.5}#app{display:none}.login{max-width:420px;margin:10vh auto}.order{border-top:1px solid #293754;padding:17px 0}.order h3{margin:0}.meta{font-size:12px;color:#9eabc5}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.output{white-space:pre-wrap;background:#0a1225;padding:14px;border-radius:9px;overflow-wrap:anywhere}.notice{color:#9bf0cf;min-height:22px}label{font-size:13px;color:#cbd5e8}
+</style></head><body><main class="wrap">
+<header><div><h1>LaunchKit AI <span style="color:#9bf0cf">/ Operator</span></h1><small>Private order review dashboard</small></div><button id="logout" class="secondary" style="display:none">Sign out</button></header>
+<section class="panel login" id="login"><h2>Operator sign in</h2><p class="muted">Use an account granted the admin app_metadata role.</p><label>Email</label><input id="email" type="email" autocomplete="username"><label>Password</label><input id="password" type="password" autocomplete="current-password"><button id="signIn">Sign in</button><div id="loginMsg" class="notice"></div></section>
+<section id="app"><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2>Orders</h2><button id="refresh" class="secondary">Refresh</button></div><div id="msg" class="notice"></div><div id="orders" class="muted">Loading…</div></div></section>
+</main>
+<script>
+const SUPABASE_URL='YOUR_SUPABASE_URL',SUPABASE_ANON_KEY='YOUR_SUPABASE_ANON_KEY';
+const $=id=>document.getElementById(id);
+let sb=null;
+if(!SUPABASE_URL.startsWith('YOUR_')&&!SUPABASE_ANON_KEY.startsWith('YOUR_'))sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+function say(t){$('msg').textContent=t}
+async function sessionCheck(){
+ if(!sb){$('loginMsg').textContent='Configure Supabase URL and anon key in admin.html first.';return;}
+ const {data}=await sb.auth.getSession();
+ if(data.session){$('login').style.display='none';$('app').style.display='block';$('logout').style.display='inline-block';loadOrders();}
+}
+$('signIn').onclick=async()=>{if(!sb)return;const {error}=await sb.auth.signInWithPassword({email:$('email').value,password:$('password').value});$('loginMsg').textContent=error?error.message:'Signed in.';if(!error)sessionCheck();};
+$('logout').onclick=async()=>{await sb.auth.signOut();location.reload()};
+$('refresh').onclick=loadOrders;
+async function loadOrders(){
+ say('Loading orders…');const {data,error}=await sb.from('orders').select('*').order('created_at',{ascending:false}).limit(100);
+ if(error){say(error.message);return;}
+ $('orders').innerHTML='';
+ if(!data.length){$('orders').textContent='No orders yet.';say('');return;}
+ data.forEach(o=>{
+  const el=document.createElement('article');el.className='order';
+  const title=document.createElement('h3');title.textContent=o.product_name+' — '+o.customer_name;
+  const meta=document.createElement('div');meta.className='meta';meta.textContent=new Date(o.created_at).toLocaleString()+' · '+o.email+' · '+o.status+' · payment: '+o.payment_status;
+  const details=document.createElement('p');details.textContent='Audience: '+o.target_audience+'\nChannel: '+o.channel+' · Language: '+o.language+'\nBrief: '+o.product_details;
+  const controls=document.createElement('div');controls.className='actions';
+  const status=document.createElement('select');['pending','confirmed','generating','review','delivered','rejected'].forEach(s=>{let op=document.createElement('option');op.value=s;op.textContent=s;op.selected=s===o.status;status.append(op)});
+  const pay=document.createElement('select');['unverified','verified','refunded'].forEach(s=>{let op=document.createElement('option');op.value=s;op.textContent='Payment: '+s;op.selected=s===o.payment_status;pay.append(op)});
+  const save=document.createElement('button');save.textContent='Save status';save.onclick=async()=>{const {error}=await sb.from('orders').update({status:status.value,payment_status:pay.value,updated_at:new Date().toISOString()}).eq('id',o.id);say(error?error.message:'Order updated.');if(!error)loadOrders()};
+  const gen=document.createElement('button');gen.className='secondary';gen.textContent='Generate content';gen.onclick=()=>generate(o.id,gen,out);
+  const out=document.createElement('div');out.className='output';out.style.display=o.generated_content?'block':'none';if(o.generated_content)out.textContent=JSON.stringify(o.generated_content,null,2);
+  controls.append(status,pay,save,gen);el.append(title,meta,details,controls,out);$('orders').append(el);
+ });
+ say(data.length+' order(s) loaded.');
+}
+async function generate(id,button,out){
+ button.disabled=true;button.textContent='Generating…';say('Generating content with the configured AI function…');
+ try{
+  const {data,error}=await sb.functions.invoke('generate-pack',{body:{order_id:id}});
+  if(error)throw error;out.style.display='block';out.textContent=JSON.stringify(data,null,2);say('Generated pack saved. Review it before delivery.');
+ }catch(e){say(e.message||'Generation failed.');}
+ finally{button.disabled=false;button.textContent='Generate content';}
+}
+sessionCheck();
+</script></body></html>
